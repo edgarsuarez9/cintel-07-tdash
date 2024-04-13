@@ -5,7 +5,7 @@ from shiny import reactive # importing reactive from shiny
 from shiny.express import input, render, ui # importing components from shiny
 import palmerpenguins # importing pendguin data set
 
-theme.darkly() # adjusts color and appearance
+theme.united() # adjusts color and appearance
 
 # loading palmer penguins data set 
 df = palmerpenguins.load_penguins() 
@@ -112,3 +112,10 @@ def filtered_df():
     filt_df = df[df["species"].isin(input.species())]
     filt_df = filt_df.loc[filt_df["body_mass_g"] < input.mass()]
     return filt_df
+
+@reactive.effect
+def _():
+    if input.dark_mode() == "Yes":
+        ui.update_dark_mode("dark")
+    else:
+        ui.update_dark_mode("light")
