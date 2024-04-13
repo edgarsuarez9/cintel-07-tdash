@@ -1,15 +1,17 @@
 import seaborn as sns
-from faicons import icon_svg
+from faicons import icon_svg # importing icon_svg for icons
 
-from shiny import reactive
-from shiny.express import input, render, ui
-import palmerpenguins 
+from shiny import reactive # importing reactive from shiny
+from shiny.express import input, render, ui # importing components from shiny
+import palmerpenguins # importing pendguin data set
 
-df = palmerpenguins.load_penguins()
+# loading palmer penguins data set 
+df = palmerpenguins.load_penguins() 
 
+#Page options and setting up title
 ui.page_opts(title="Penguins dashboard", fillable=True)
 
-
+# creating a sidebar for inputs
 with ui.sidebar(title="Filter controls"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
@@ -24,17 +26,17 @@ with ui.sidebar(title="Filter controls"):
         "GitHub Source",
         href="https://github.com/denisecase/cintel-07-tdash",
         target="_blank",
-    )
+    ) # adding hyperlink
     ui.a(
         "GitHub App",
         href="https://denisecase.github.io/cintel-07-tdash/",
         target="_blank",
-    )
+    ) # adding hyperlink
     ui.a(
         "GitHub Issues",
         href="https://github.com/denisecase/cintel-07-tdash/issues",
         target="_blank",
-    )
+    ) # adding hyperlink
     ui.a("PyShiny", href="https://shiny.posit.co/py/", target="_blank")
     ui.a(
         "Template: Basic Dashboard",
@@ -47,9 +49,9 @@ with ui.sidebar(title="Filter controls"):
         target="_blank",
     )
 
-
+#creating a layout to display outputs 
 with ui.layout_column_wrap(fill=False):
-    with ui.value_box(showcase=icon_svg("earlybirds")):
+    with ui.value_box(showcase=icon_svg("earlybirds")): # including value box 
         "Number of penguins"
 
         @render.text
@@ -72,7 +74,7 @@ with ui.layout_column_wrap(fill=False):
 
 
 with ui.layout_columns():
-    with ui.card(full_screen=True):
+    with ui.card(full_screen=True): # adding a card to present scatterplot 
         ui.card_header("Bill length and depth")
 
         @render.plot
@@ -102,6 +104,7 @@ with ui.layout_columns():
 #ui.include_css(app_dir / "styles.css")
 
 
+# reactive function to filter data frame based on inputs
 @reactive.calc
 def filtered_df():
     filt_df = df[df["species"].isin(input.species())]
