@@ -45,6 +45,9 @@ with ui.sidebar(title="Filter controls"):
         href="https://shiny.posit.co/py/templates/dashboard/",
         target="_blank",
     )
+
+    ui.input_radio_buttons("dark_mode", "Dark Mode:", ["Yes", "No"], selected="No")
+    
     ui.a(
         "See also",
         href="https://github.com/denisecase/pyshiny-penguins-dashboard-express",
