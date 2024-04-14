@@ -5,7 +5,7 @@ from shiny import reactive # importing reactive from shiny
 from shiny.express import input, render, ui # importing components from shiny
 import palmerpenguins # importing pendguin data set
 
-theme.united() # adjusts color and appearance
+ # adjusts color and appearance
 
 # loading palmer penguins data set 
 df = palmerpenguins.load_penguins() 
