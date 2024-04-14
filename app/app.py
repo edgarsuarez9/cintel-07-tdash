@@ -2,10 +2,11 @@ import seaborn as sns
 from faicons import icon_svg # importing icon_svg for icons
  # imports theme from shinyswatch to allow for appearance changes
 from shiny import reactive # importing reactive from shiny
+import shinyswatch #import shinyswatch to allow for changes in appearance
 from shiny.express import input, render, ui # importing components from shiny
 import palmerpenguins # importing pendguin data set
 
- # adjusts color and appearance
+shinyswatch.theme.united()
 
 # loading palmer penguins data set 
 df = palmerpenguins.load_penguins() 
