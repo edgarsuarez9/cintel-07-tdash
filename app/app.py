@@ -113,6 +113,7 @@ def filtered_df():
     filt_df = filt_df.loc[filt_df["body_mass_g"] < input.mass()]
     return filt_df
 
+# adding dark mode
 @reactive.effect
 def _():
     if input.dark_mode() == "Yes":
